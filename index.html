@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7 Anos de Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe0f0, #f7f7ff);
+      color: #333;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #c0392b;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: url('sua-foto-aqui.jpg') no-repeat center center/cover;
+      color: white;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+    }
+
+    .btn {
+      margin-top: 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .timeline {
+      padding: 40px 20px;
+      background-color: #fff;
+      border-radius: 20px;
+      margin: 40px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .timeline-item {
+      margin-bottom: 20px;
+    }
+
+    .timeline-item h3 {
+      color: #e91e63;
+    }
+
+    .declaracao {
+      font-size: 1.2rem;
+      padding: 20px;
+      background-color: #fce4ec;
+      border-left: 5px solid #e91e63;
+      margin-top: 40px;
+      border-radius: 10px;
+      animation: fadein 2s ease-in-out;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @keyframes fadein {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>7 Anos de Amor</h1>
+    <p>Uma jornada que mudou nossas vidas para sempre 💖</p>
+    <button class="btn" onclick="document.getElementById('conteudo').scrollIntoView({ behavior: 'smooth' });">Ver mais</button>
+  </section>
+
+  <div class="container" id="conteudo">
+    <section class="timeline">
+      <h2>Nossa História</h2>
+      <div class="timeline-item">
+        <h3>2017</h3>
+        <p>O ano em que tudo começou. Nosso primeiro olhar, nosso primeiro "oi"...</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2018</h3>
+        <p>Viagens, risos, aprendizados. Nos conhecendo mais e mais.</p>
+      </div>
+      <!-- Adicione mais anos aqui -->
+    </section>
+
+    <section class="declaracao">
+      <h2>Para o Amor da Minha Vida</h2>
+      <p>
+        Sete anos se passaram, e cada momento ao seu lado me fez ter certeza de que encontrei meu lar em você. Obrigado por cada riso, cada abraço, cada apoio. Que venham mais sete, setenta, uma eternidade ao seu lado. 💘
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    Feito com amor por você ❤️
+  </footer>
+</body>
+</html>
