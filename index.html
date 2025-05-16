@@ -88,6 +88,7 @@
       border-radius: 50%;
       user-select: none;
       transition: background-color 0.2s ease;
+      z-index: 10; /* Garantir que fique acima da imagem */
     }
     .seta:hover {
       background-color: #6c38d9;
@@ -130,6 +131,7 @@
       line-height: 1.5;
       font-weight: 500;
       font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: auto; /* centraliza no modal */
     }
     .modal-carta p {
       margin-bottom: 1em;
@@ -161,6 +163,15 @@
       font-size: 1rem;
       color: #8553a7;
       font-weight: 600;
+    }
+
+    /* ======== Ajuste para celular centralizar carta ======== */
+    @media (max-width: 600px) {
+      .modal-carta {
+        width: 90%;
+        max-width: 90%;
+        max-height: 90vh;
+      }
     }
   </style>
 </head>
@@ -206,41 +217,34 @@
     by Olavo Silva, seu Esposo ❤
   </footer>
 
+  <audio src="more_than_words.mp3" autoplay loop></audio>
+
   <script>
+    // Variáveis da galeria
     const fotos = [
-      "fotos/foto1.jpeg",
-      "fotos/foto2.jpeg",
-      "fotos/foto3.jpeg",
-      "fotos/foto4.jpeg",
-      "fotos/foto5.jpeg",
-      "fotos/foto6.jpeg",
-      "fotos/foto7.jpeg",
-      "fotos/foto8.jpeg",
-      "fotos/foto9.jpeg",
-      "fotos/foto10.jpeg",
-      "fotos/foto11.jpeg",
-      "fotos/foto12.jpeg",
-      "fotos/foto13.jpeg",
-      "fotos/foto14.jpeg",
-      "fotos/foto15.jpeg",
-      "fotos/foto16.jpeg",
-      "fotos/foto17.jpeg",
-      "fotos/foto18.jpeg",
-      "fotos/foto19.jpeg",
-      "fotos/foto20.jpeg",
-      "fotos/foto21.jpeg",
+      "fotos/foto1.jpeg", "fotos/foto2.jpeg", "fotos/foto3.jpeg",
+      "fotos/foto4.jpeg", "fotos/foto5.jpeg", "fotos/foto6.jpeg",
+      "fotos/foto7.jpeg", "fotos/foto8.jpeg", "fotos/foto9.jpeg",
+      "fotos/foto10.jpeg", "fotos/foto11.jpeg", "fotos/foto12.jpeg",
+      "fotos/foto13.jpeg", "fotos/foto14.jpeg", "fotos/foto15.jpeg",
+      "fotos/foto16.jpeg", "fotos/foto17.jpeg", "fotos/foto18.jpeg",
+      "fotos/foto19.jpeg", "fotos/foto20.jpeg", "fotos/foto21.jpeg",
       "fotos/foto22.jpeg"
     ];
 
     let indiceAtual = 0;
+    const imgElemento = document.getElementById('fotoCarrossel');
 
+    // Função para trocar foto do carrossel manualmente
     function trocarFoto(direcao) {
       indiceAtual += direcao;
       if (indiceAtual < 0) indiceAtual = fotos.length - 1;
       if (indiceAtual >= fotos.length) indiceAtual = 0;
-      document.getElementById('fotoCarrossel').src = fotos[indiceAtual];
+      imgElemento.src = fotos[indiceAtual];
+      resetarAutoplay(); // Reinicia o autoplay ao trocar manualmente
     }
 
+    // Função para mostrar a frase surpresa
     function mostrarFrase() {
       const frase = document.getElementById('fraseRevelada');
       if (frase.style.display === 'block') {
@@ -250,12 +254,26 @@
       }
     }
 
+    // Modal carta
+    const modal = document.getElementById('modalCarta');
     function abrirCarta() {
-      document.getElementById('modalCarta').classList.add('ativo');
+      modal.classList.add('ativo');
+    }
+    function fecharCarta() {
+      modal.classList.remove('ativo');
     }
 
-    function fecharCarta() {
-      document.getElementById('modalCarta').classList.remove('ativo');
+    // Autoplay do carrossel: troca automática a cada 4s
+    let autoplayInterval = setInterval(() => {
+      trocarFoto(1);
+    }, 4000);
+
+    // Reinicia autoplay ao trocar manualmente, para não trocar justo na hora
+    function resetarAutoplay() {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        trocarFoto(1);
+      }, 4000);
     }
   </script>
 
