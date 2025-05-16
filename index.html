@@ -30,7 +30,7 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    .botao-surpresa {
+    .botao-surpresa, .botao-musica {
       margin-top: 30px;
       padding: 10px 20px;
       background-color: #d9b3ff;
@@ -67,7 +67,7 @@
     .carta {
       margin: 50px auto;
       width: 300px;
-      height: 200px;
+      height: auto;
       background-color: #fff;
       border: 2px solid #d9b3ff;
       border-radius: 10px;
@@ -84,6 +84,10 @@
       color: #5c2d91;
     }
 
+    .texto-carta p {
+      margin-bottom: 10px;
+    }
+
     footer {
       margin-top: 50px;
       font-size: 0.9rem;
@@ -93,8 +97,10 @@
 </head>
 <body>
   <header>
-    Esse é uma surpresa que eu já venho querendo fazer há um tempo e agora finalmente consegui fazer ❤
+    Essa é uma surpresa que eu já venho querendo fazer há um tempo e agora finalmente consegui fazer ❤
   </header>
+
+  <button class="botao-musica" onclick="document.getElementById('musica').play()">Tocar Música 🎶</button>
 
   <button class="botao-surpresa" onclick="document.querySelector('.frase-revelada').style.display='block'">
     Clique aqui 💜
@@ -104,26 +110,48 @@
   </div>
 
   <section class="galeria">
-    <!-- Suba suas 22 imagens no GitHub e renomeie para foto1.jpg, foto2.jpg... -->
     <img src="fotos/foto1.jpg" alt="Foto 1">
     <img src="fotos/foto2.jpg" alt="Foto 2">
     <img src="fotos/foto3.jpg" alt="Foto 3">
-    <!-- Continue até a foto22.jpg -->
+    <img src="fotos/foto4.jpg" alt="Foto 4">
+    <img src="fotos/foto5.jpg" alt="Foto 5">
+    <img src="fotos/foto6.jpg" alt="Foto 6">
+    <img src="fotos/foto7.jpg" alt="Foto 7">
+    <img src="fotos/foto8.jpg" alt="Foto 8">
+    <img src="fotos/foto9.jpg" alt="Foto 9">
+    <img src="fotos/foto10.jpg" alt="Foto 10">
+    <img src="fotos/foto11.jpg" alt="Foto 11">
+    <img src="fotos/foto12.jpg" alt="Foto 12">
+    <img src="fotos/foto13.jpg" alt="Foto 13">
+    <img src="fotos/foto14.jpg" alt="Foto 14">
+    <img src="fotos/foto15.jpg" alt="Foto 15">
+    <img src="fotos/foto16.jpg" alt="Foto 16">
+    <img src="fotos/foto17.jpg" alt="Foto 17">
+    <img src="fotos/foto18.jpg" alt="Foto 18">
+    <img src="fotos/foto19.jpg" alt="Foto 19">
+    <img src="fotos/foto20.jpg" alt="Foto 20">
+    <img src="fotos/foto21.jpg" alt="Foto 21">
+    <img src="fotos/foto22.jpg" alt="Foto 22">
   </section>
 
   <div class="carta" onclick="document.querySelector('.texto-carta').style.display='block'">
     Clique para abrir a carta 💌
     <div class="texto-carta">
-      <!-- Cole sua declaração aqui depois -->
-      Sua mensagem linda vai aqui, meu bem 🥺💕
+      <p>Meu amor, sei que já passou o dia que fizemos 7 anos, mas estava tentando fazer essa surpresa, só que faltava tempo, então resolvi fazer assim mesmo aqui no trabalho. Sei que é algo simples, mas espero que você guarde essa surpresa com você pra sempre.</p>
+      <p>Esse ano nós fizemos 7 anos juntos, 7 anos que dividimos a vida um com o outro, encarando os problemas e dificuldades da vida, mas graças a Deus, sempre Juntos. Já passamos por tantas coisas, tantos altos e baixos, e continuamos amando um ao outro incondicionalmente né?</p>
+      <p>Parece que estamos distante um do outro, por conta do trabalho que você está, que está consumindo sua energia e seu tempo, mas sei que Deus vai abrir um porta melhor logo logo e sei também que Ele vai nos reconectar novamente, só precisamos continuar firmes, sem desistir e sem retroceder, porque somos um só, minha vida.</p>
+      <p>Amar você, ter você pra mim, é a melhor parte da vida, é o que me dá motivos para acordar e lutar por algo melhor todos os dias. Você me faz o homem mais feliz do universo, mesmo pensando que não. Você me completa e é a minha força pra continuar aqui. Sem você eu não sei o que seria de mim, não sei nem se estaria aqui. Você é o meu anjo, meu poro seguro, meu refúgio, você é o meu Lar, meu Melhor Lugar.</p>
+      <p>Eu te amo a cada dia que passa, te quero como se eu já não tivesse você, te desejo como se fosse a primeira vez que te vejo. Você é a pessoa que eu mais admiro na vida, que me orgulho e que sei que vai alcançar tudo de maravilhoso que existe no mundo e eu estarei lá, em todas as suas conquistas.</p>
+      <p>Eu te amo incondicionalmente, todos os dias, em todas as línguas, em todos os universos e como diz a frase do Homem de Ferro, Eu Te Amo Mil Milhões, minha vida.</p>
+      <p>Feliz 7 anos de uma vida inteira! ❤❤</p>
     </div>
   </div>
 
   <footer>
-    Feito com muito amor por você, meu amorzinho. Inspirado por Friends & One Direction 💜
+    by Olavo Silva, seu Esposo ❤
   </footer>
 
-  <audio autoplay loop>
+  <audio id="musica" loop>
     <source src="more-than-words.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
