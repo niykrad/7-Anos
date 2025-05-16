@@ -1,130 +1,131 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>7 Anos de Amor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <title>Nosso Amor - 7 Anos Juntos</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffe0f0, #f7f7ff);
-      color: #333;
-    }
-
-    h1, h2 {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #f5e6ff;
+      color: #5c2d91;
       text-align: center;
-      color: #c0392b;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: url('sua-foto-aqui.jpg') no-repeat center center/cover;
-      color: white;
-      text-shadow: 2px 2px 4px #000;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    .hero p {
+    header {
+      background-color: #e0b3ff;
+      padding: 40px 20px;
       font-size: 1.5rem;
     }
 
-    .btn {
-      margin-top: 20px;
-      background-color: #e91e63;
-      color: white;
-      border: none;
+    .surpresa {
+      margin-top: 30px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      display: inline-block;
+      padding: 20px 40px;
+      font-size: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .botao-surpresa {
+      margin-top: 30px;
       padding: 10px 20px;
+      background-color: #d9b3ff;
+      border: none;
+      border-radius: 8px;
       font-size: 1rem;
-      border-radius: 20px;
       cursor: pointer;
+      color: #fff;
     }
 
-    .timeline {
-      padding: 40px 20px;
-      background-color: #fff;
-      border-radius: 20px;
-      margin: 40px 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    .frase-revelada {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      display: none;
+      color: #a64dff;
     }
 
-    .timeline-item {
-      margin-bottom: 20px;
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 40px 10px;
     }
 
-    .timeline-item h3 {
-      color: #e91e63;
-    }
-
-    .declaracao {
-      font-size: 1.2rem;
-      padding: 20px;
-      background-color: #fce4ec;
-      border-left: 5px solid #e91e63;
-      margin-top: 40px;
+    .galeria img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
       border-radius: 10px;
-      animation: fadein 2s ease-in-out;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .carta {
+      margin: 50px auto;
+      width: 300px;
+      height: 200px;
+      background-color: #fff;
+      border: 2px solid #d9b3ff;
+      border-radius: 10px;
+      padding: 20px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .texto-carta {
+      display: none;
+      font-size: 1rem;
+      text-align: left;
+      margin-top: 10px;
+      color: #5c2d91;
     }
 
     footer {
-      text-align: center;
-      padding: 20px;
+      margin-top: 50px;
       font-size: 0.9rem;
-      color: #888;
-    }
-
-    @keyframes fadein {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      color: #8553a7;
     }
   </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>7 Anos de Amor</h1>
-    <p>Uma jornada que mudou nossas vidas para sempre 💖</p>
-    <button class="btn" onclick="document.getElementById('conteudo').scrollIntoView({ behavior: 'smooth' });">Ver mais</button>
+  <header>
+    Esse é uma surpresa que eu já venho querendo fazer há um tempo e agora finalmente consegui fazer ❤
+  </header>
+
+  <button class="botao-surpresa" onclick="document.querySelector('.frase-revelada').style.display='block'">
+    Clique aqui 💜
+  </button>
+  <div class="frase-revelada">
+    Feliz 7 Anos juntos, minha Vida 💕
+  </div>
+
+  <section class="galeria">
+    <!-- Suba suas 22 imagens no GitHub e renomeie para foto1.jpg, foto2.jpg... -->
+    <img src="fotos/foto1.jpg" alt="Foto 1">
+    <img src="fotos/foto2.jpg" alt="Foto 2">
+    <img src="fotos/foto3.jpg" alt="Foto 3">
+    <!-- Continue até a foto22.jpg -->
   </section>
 
-  <div class="container" id="conteudo">
-    <section class="timeline">
-      <h2>Nossa História</h2>
-      <div class="timeline-item">
-        <h3>2017</h3>
-        <p>O ano em que tudo começou. Nosso primeiro olhar, nosso primeiro "oi"...</p>
-      </div>
-      <div class="timeline-item">
-        <h3>2018</h3>
-        <p>Viagens, risos, aprendizados. Nos conhecendo mais e mais.</p>
-      </div>
-      <!-- Adicione mais anos aqui -->
-    </section>
-
-    <section class="declaracao">
-      <h2>Para o Amor da Minha Vida</h2>
-      <p>
-        Sete anos se passaram, e cada momento ao seu lado me fez ter certeza de que encontrei meu lar em você. Obrigado por cada riso, cada abraço, cada apoio. Que venham mais sete, setenta, uma eternidade ao seu lado. 💘
-      </p>
-    </section>
+  <div class="carta" onclick="document.querySelector('.texto-carta').style.display='block'">
+    Clique para abrir a carta 💌
+    <div class="texto-carta">
+      <!-- Cole sua declaração aqui depois -->
+      Sua mensagem linda vai aqui, meu bem 🥺💕
+    </div>
   </div>
 
   <footer>
-    Feito com amor por você ❤️
+    Feito com muito amor por você, meu amorzinho. Inspirado por Friends & One Direction 💜
   </footer>
+
+  <audio autoplay loop>
+    <source src="more-than-words.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
 </body>
 </html>
