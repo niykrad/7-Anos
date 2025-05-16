@@ -1,129 +1,290 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>7 Anos Juntos</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>7 Anos - Bia e Olavo</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f0ff;
-      color: #5c3c92;
       margin: 0;
-      padding: 20px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #f3e6ff 0%, #d8b3ff 100%);
+      color: #5c2d91;
       text-align: center;
+      overflow-x: hidden;
     }
 
     header {
-      font-size: 2em;
-      font-weight: bold;
-      margin-top: 30px;
-      margin-bottom: 20px;
+      background: linear-gradient(90deg, #b47eff, #7a39cc);
+      color: white;
+      padding: 40px 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      max-width: 900px;
+      margin: 0 auto 40px auto;
+      box-shadow: 0 6px 15px rgba(122,57,204,0.5);
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin: 20px 0;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .letter {
-      background-color: #ffffff;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 600px;
-      box-shadow: 0 0 15px rgba(92, 60, 146, 0.3);
-    }
-
-    .surprise-btn {
-      background-color: #d9b3ff;
-      color: #fff;
+    /* Botão estilizado */
+    .botao-surpresa {
+      margin: 30px auto;
+      padding: 15px 40px;
+      background: linear-gradient(45deg, #8a3fff, #c591ff);
       border: none;
-      padding: 15px 30px;
-      font-size: 1.1em;
-      border-radius: 10px;
+      border-radius: 30px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
       cursor: pointer;
-      margin-top: 30px;
-      transition: background-color 0.3s;
+      box-shadow: 0 6px 15px rgba(138,63,255,0.6);
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+    .botao-surpresa:hover {
+      background: linear-gradient(45deg, #c591ff, #8a3fff);
+      transform: scale(1.05);
     }
 
-    .surprise-btn:hover {
-      background-color: #c08cff;
-    }
-
-    .surprise-message {
+    /* Texto da surpresa */
+    .frase-revelada {
       margin-top: 20px;
-      font-size: 1.5em;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #a64dff;
       display: none;
-      animation: fadeIn 1s ease-in-out forwards;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Carrossel da galeria */
+    .carrossel-container {
+      position: relative;
+      max-width: 320px;
+      margin: 40px auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      background: white;
+      padding: 15px;
+    }
+    .carrossel-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 15px;
+      user-select: none;
+    }
+    .seta {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(108, 56, 217, 0.8);
+      border: none;
+      color: white;
+      font-size: 2.5rem;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      user-select: none;
+      transition: background-color 0.2s ease;
+      z-index: 10; /* Garantir que fique acima da imagem */
+    }
+    .seta:hover {
+      background-color: #6c38d9;
+    }
+    .seta-esq {
+      left: 10px;
+    }
+    .seta-dir {
+      right: 10px;
     }
 
-    audio {
+    /* Modal da carta */
+    .modal-fundo {
       display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-fundo.ativo {
+      display: flex;
+    }
+    .modal-carta {
+      background: #fff;
+      border-radius: 15px;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 30px 25px;
+      box-shadow: 0 0 20px rgba(108, 56, 217, 0.3);
+      position: relative;
+      text-align: left;
+      color: #5c2d91;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      font-weight: 500;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: auto; /* centraliza no modal */
+    }
+    .modal-carta p {
+      margin-bottom: 1em;
+    }
+    .botao-fechar {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: #8a3fff;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      line-height: 38px;
+      text-align: center;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    .botao-fechar:hover {
+      background: #c591ff;
+    }
+
+    /* Footer */
+    footer {
+      margin: 50px 0 30px;
+      font-size: 1rem;
+      color: #8553a7;
+      font-weight: 600;
+    }
+
+    /* ======== Ajuste para celular centralizar carta ======== */
+    @media (max-width: 600px) {
+      .modal-carta {
+        width: 90%;
+        max-width: 90%;
+        max-height: 90vh;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Música de fundo -->
-  <audio id="musica" autoplay loop>
-    <source src="more_than_words.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio HTML5.
-  </audio>
-
   <header>
     Essa é uma surpresa que eu já venho querendo fazer há um tempo e agora finalmente consegui fazer ❤
   </header>
 
-  <div class="gallery">
-    <!-- Substitua pelos caminhos reais das imagens -->
-    <img src="fotos/1.jpg" alt="Foto 1">
-    <img src="fotos/2.jpg" alt="Foto 2">
-    <img src="fotos/3.jpg" alt="Foto 3">
-    <img src="fotos/4.jpg" alt="Foto 4">
-    <!-- ... até a foto 22 -->
-    <img src="fotos/22.jpg" alt="Foto 22">
-  </div>
-
-  <div class="letter">
-    <h2>Minha Carta para Você</h2>
-    <p>
-      Meu amor, nesses 7 anos juntos, vivemos tantas coisas, crescemos tanto, enfrentamos altos e baixos,
-      mas sempre permanecemos lado a lado. Essa surpresa é só uma forma de te mostrar o quanto eu te amo
-      e o quanto você significa pra mim. Você é minha vida, minha alegria, minha melhor escolha. Eu te amo
-      mais do que palavras podem dizer.
-    </p>
-  </div>
-
-  <button class="surprise-btn" onclick="mostrarMensagem()">Clique para uma surpresinha</button>
-  <div class="surprise-message" id="mensagem">
+  <button class="botao-surpresa" onclick="mostrarFrase()">
+    Clique aqui 💜
+  </button>
+  <div class="frase-revelada" id="fraseRevelada">
     Feliz 7 Anos juntos, minha Vida 💕
   </div>
 
+  <section class="carrossel-container">
+    <button class="seta seta-esq" onclick="trocarFoto(-1)">‹</button>
+    <img src="fotos/foto1.jpeg" alt="Foto 1" class="carrossel-img" id="fotoCarrossel" />
+    <button class="seta seta-dir" onclick="trocarFoto(1)">›</button>
+  </section>
+
+  <div style="text-align:center;">
+    <button class="botao-surpresa" onclick="abrirCarta()">
+      Clique para abrir a carta 💌
+    </button>
+  </div>
+
+  <div class="modal-fundo" id="modalCarta">
+    <div class="modal-carta">
+      <button class="botao-fechar" onclick="fecharCarta()">×</button>
+      <p>Meu amor, sei que já passou o dia que fizemos 7 anos, mas estava tentando fazer essa surpresa, só que faltava tempo, então resolvi fazer assim mesmo aqui no trabalho. Sei que é algo simples, mas espero que você guarde essa surpresa com você pra sempre.</p>
+      <p>Esse ano nós fizemos 7 anos juntos, 7 anos que dividimos a vida um com o outro, encarando os problemas e dificuldades da vida, mas graças a Deus, sempre Juntos. Já passamos por tantas coisas, tantos altos e baixos, e continuamos amando um ao outro incondicionalmente né?</p>
+      <p>Parece que estamos distante um do outro, por conta do trabalho que você está, que está consumindo sua energia e seu tempo, mas sei que Deus vai abrir um porta melhor logo logo e sei também que Ele vai nos reconectar novamente, só precisamos continuar firmes, sem desistir e sem retroceder, porque somos um só, minha vida.</p>
+      <p>Amar você, ter você pra mim, é a melhor parte da vida, é o que me dá motivos para acordar e lutar por algo melhor todos os dias. Você me faz o homem mais feliz do universo, mesmo pensando que não. Você me completa e é a minha força pra continuar aqui. Sem você eu não sei o que seria de mim, não sei nem se estaria aqui. Você é o meu anjo, meu poro seguro, meu refúgio, você é o meu Lar, meu Melhor Lugar.</p>
+      <p>Eu te amo a cada dia que passa, te quero como se eu já não tivesse você, te desejo como se fosse a primeira vez que te vejo. Você é a pessoa que eu mais admiro na vida, que me orgulho e que sei que vai alcançar tudo de maravilhoso que existe no mundo e eu estarei lá, em todas as suas conquistas.</p>
+      <p>Eu te amo incondicionalmente, todos os dias, em todas as línguas, em todos os universos e como diz a frase do Homem de Ferro, Eu Te Amo Mil Milhões, minha vida.</p>
+      <p>Feliz 7 anos de uma vida inteira! ❤❤</p>
+    </div>
+  </div>
+
+  <footer>
+    by Olavo Silva, seu Esposo ❤
+  </footer>
+
+  <audio src="more_than_words.mp3" autoplay loop></audio>
+
   <script>
-    function mostrarMensagem() {
-      document.getElementById('mensagem').style.display = 'block';
+    // Variáveis da galeria
+    const fotos = [
+      "fotos/foto1.jpeg", "fotos/foto2.jpeg", "fotos/foto3.jpeg",
+      "fotos/foto4.jpeg", "fotos/foto5.jpeg", "fotos/foto6.jpeg",
+      "fotos/foto7.jpeg", "fotos/foto8.jpeg", "fotos/foto9.jpeg",
+      "fotos/foto10.jpeg", "fotos/foto11.jpeg", "fotos/foto12.jpeg",
+      "fotos/foto13.jpeg", "fotos/foto14.jpeg", "fotos/foto15.jpeg",
+      "fotos/foto16.jpeg", "fotos/foto17.jpeg", "fotos/foto18.jpeg",
+      "fotos/foto19.jpeg", "fotos/foto20.jpeg", "fotos/foto21.jpeg",
+      "fotos/foto22.jpeg"
+    ];
+
+    let indiceAtual = 0;
+    const imgElemento = document.getElementById('fotoCarrossel');
+
+    // Função para trocar foto do carrossel manualmente
+    function trocarFoto(direcao) {
+      indiceAtual += direcao;
+      if (indiceAtual < 0) indiceAtual = fotos.length - 1;
+      if (indiceAtual >= fotos.length) indiceAtual = 0;
+      imgElemento.src = fotos[indiceAtual];
+      resetarAutoplay(); // Reinicia o autoplay ao trocar manualmente
+    }
+
+    // Função para mostrar a frase surpresa
+    function mostrarFrase() {
+      const frase = document.getElementById('fraseRevelada');
+      if (frase.style.display === 'block') {
+        frase.style.display = 'none';
+      } else {
+        frase.style.display = 'block';
+      }
+    }
+
+    // Modal carta
+    const modal = document.getElementById('modalCarta');
+    function abrirCarta() {
+      modal.classList.add('ativo');
+    }
+    function fecharCarta() {
+      modal.classList.remove('ativo');
+    }
+
+    // Autoplay do carrossel: troca automática a cada 4s
+    let autoplayInterval = setInterval(() => {
+      trocarFoto(1);
+    }, 4000);
+
+    // Reinicia autoplay ao trocar manualmente, para não trocar justo na hora
+    function resetarAutoplay() {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        trocarFoto(1);
+      }, 4000);
     }
   </script>
 
+</body>
+</html>
+  <footer>
+    by Olavo Silva, seu Esposo ❤
+  </footer>
+<audio autoplay loop>
+    <source src="more-than-words.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+</audio>
 </body>
 </html>
